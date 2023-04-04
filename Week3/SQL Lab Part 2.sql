@@ -98,6 +98,11 @@ where date < 930907
 group by 1
 order by 1 desc;
 
-
+-- Query 17: In the loan table, for each day in December 1997, count the number of loans issued for each unique loan duration, ordered by date and duration, both in ascending order. You can ignore days without any loans in your output.
+select date,duration, count(loan_id)
+from bank.loan
+where date like '9712%' and duration <> 0
+group by 1,2
+order by date,duration;
 
 
