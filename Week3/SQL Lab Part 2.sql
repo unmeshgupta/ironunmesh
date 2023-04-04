@@ -70,6 +70,34 @@ order by date desc
 limit 10;
 
 
+-- Query 13 : In the client table, of all districts with a district_id lower than 10, how many clients are from each district_id? Show the results sorted by the district_id in ascending order.
+select district_id, count(*)
+from bank.client
+where district_id <10
+group by 1
+order by 1;
+
+
+-- Query 14: In the card table, how many cards exist for each type? Rank the result starting with the most frequent type.
+select type, count(card_id)
+from bank.card
+group by 1
+order by 2 desc;
+
+-- Query 15: Using the loan table, print the top 10 account_ids based on the sum of all of their loan amounts.
+select account_id, sum(amount)
+from bank.loan 
+group by 1
+order by 2 desc
+limit 10;
+
+-- Query 16: In the loan table, retrieve the number of loans issued for each day, before (excl) 930907, ordered by date in descending order.
+select date,count(loan_id)
+from bank.loan
+where date < 930907
+group by 1
+order by 1 desc;
+
 
 
 
