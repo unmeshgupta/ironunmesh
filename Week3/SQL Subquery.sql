@@ -38,8 +38,6 @@ where film_id in
                    where actor_id = 
                                    (select actor_id from (select actor_id, count(film_id) as films_done from sakila.film_actor group by 1 order by films_done desc limit 1) as tab));
 
--- Query 7: Films rented by most profitable customer. You can use the customer table and payment table to find the most profitable customer ie the customer that has made the largest sum of payments.
-select title from sakila.film where film_id in (select film_id
 
 
 
