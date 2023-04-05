@@ -21,7 +21,6 @@ where film_id in (select film_id from sakila.film_category where category_id in 
 select first_name, last_name, email from sakila.customer where address_id in (select address_id from sakila.address where city_id in
                                                                                         (select city_id from sakila.city where country_id = (select country_id from sakila.country where  country = 'Canada')));
 
-                                                                                        (select city_id from sakila.city where country_id = (select country_id from sakila.country where  country = 'Canada')));
 -- With JOIN solution 																		
 select first_name, last_name, email 
 from sakila.customer c join sakila.address a
