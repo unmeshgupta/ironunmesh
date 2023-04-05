@@ -21,8 +21,27 @@ where film_id in (select film_id from sakila.film_category where category_id in 
 select first_name, last_name, email from sakila.customer where address_id in (select address_id from sakila.address where city_id in
                                                                                         (select city_id from sakila.city where country_id = (select country_id from sakila.country where  country = 'Canada')));
 
+                                                                                        (select city_id from sakila.city where country_id = (select country_id from sakila.country where  country = 'Canada')));
+-- With JOIN solution 																		
+select first_name, last_name, email 
+from sakila.customer c join sakila.address a
+on c.address_id = a.address_id	
+join sakila.city ci 
+on a.city_id = ci.city_id 
+join sakila.country cy 
+on ci.country_id = cy.country_id and country = 'Canada'														
+                                                                                
+
 -- Query 6: Which are films starred by the most prolific actor? Most prolific actor is defined as the actor that has acted in the most number of films. First you will have to find the most prolific actor and then use that actor_id to find the different films that he/she starred.
-select 
+select title from sakila.film 
+where film_id in 
+       (select film_id from sakila.film_actor 
+                   where actor_id = 
+                                   (select actor_id from (select actor_id, count(film_id) as films_done from sakila.film_actor group by 1 order by films_done desc limit 1) as tab));
+
+-- Query 7: Films rented by most profitable customer. You can use the customer table and payment table to find the most profitable customer ie the customer that has made the largest sum of payments.
+select title from sakila.film where film_id in (select film_id
+
 
 
 
