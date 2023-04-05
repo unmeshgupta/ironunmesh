@@ -30,7 +30,7 @@ on a.address_id = s.address_id;
 select f.title, l.name
 from sakila.film f join sakila.language l
 on f.language_id = l.language_id 
-where l.name = 'English' or l.name = 'Italian' or f.title like 'M%'
+where l.name = 'English' or l.name = 'Italian' and f.title like 'M%'
 
 -- Query 6: Display the total amount rung up by each staff member in August of 2005.
 select s.first_name, s.last_name, sum(p.amount)
